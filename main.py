@@ -1,5 +1,6 @@
 import pygame
 import sys
+import os
 from constants import *
 from player import *
 from asteroid import *
@@ -8,6 +9,7 @@ from shot import *
 
 def main():
     pygame.init()
+    pygame.font.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
 
