@@ -7,6 +7,8 @@ from asteroid import *
 from asteroidfield import *
 from shot import *
 
+score = 0
+
 def main():
     pygame.init()
     pygame.font.init()
@@ -30,6 +32,8 @@ def main():
     field = AsteroidField() 
 
     while True:
+        font = pygame.font.Font(None, 36)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -42,11 +46,17 @@ def main():
                 sys.exit("Game over!")
 
             for bullet in shots:
+                global score
                 if asteroid.is_collide(bullet):
                     bullet.kill()
                     asteroid.split()
+                    score += SCORE_INCREMENT
+
 
         screen.fill('black')
+
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
 
         for obj in drawable:
             obj.draw(screen)
